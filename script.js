@@ -334,7 +334,7 @@ const copyLinkButtonClick = () => {
         .catch((err) => {
             console.error('Failed to copy URL: ', err);
         });
-    alert("Link copied to clipboard!");
+    showNotification("Link Copy Successfully");
 }
 
 
@@ -348,9 +348,11 @@ const saveItemOnClick = () => {
 
     if (save) {
         localStorage.removeItem("saveItem");
+        showNotification("Remove item successfully")
         saveItemImage.classList.remove("save-item-background-color");
     } else {
         localStorage.setItem("saveItem", true);
+        showNotification("Save item successfully")
         saveItemImage.classList.add("save-item-background-color");
     }
 }
@@ -362,3 +364,15 @@ window.onload = () => {
         saveItemImage.classList.add("save-item-background-color");
     }
 }
+
+// notification when task is complete
+function showNotification(text) {
+    const notification = document.getElementById('notification');
+    const notificationMessage=document.getElementById('notification-message').innerText=text;
+    notification.classList.add('show');
+
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
+
