@@ -31,7 +31,7 @@ The project is hosted on GitHub Pages. You can view the live version [here](http
 ## Repository
 The GitHub repository for this project can be found [here](https://github.com/imrancse190/HTML_CSS_Javascript_assignment).
 
-## Screenshots
+<!-- ## Screenshots
 ### Desktop View
 <img style="width: 500px" src="./Readme_related_image/Screenshot from 2024-07-11 12-45-08.png"/>
 <img style="width: 500px" src="./Readme_related_image/Screenshot from 2024-07-11 12-45-28.png"/>
@@ -44,7 +44,7 @@ The GitHub repository for this project can be found [here](https://github.com/im
 <img style="width: 300px" src="./Readme_related_image/Screenshot from 2024-07-11 12-52-06.png"/>
 <img style="width: 300px" src="./Readme_related_image/Screenshot from 2024-07-11 12-52-13.png"/>
 <img style="width: 300px" src="./Readme_related_image/Screenshot from 2024-07-11 12-52-18.png"/>
-<img style="width: 300px" src="./Readme_related_image/Screenshot from 2024-07-11 12-52-21.png"/>
+<img style="width: 300px" src="./Readme_related_image/Screenshot from 2024-07-11 12-52-21.png"/> -->
 
 ## How to Run the Project
 1. Clone the repository:
