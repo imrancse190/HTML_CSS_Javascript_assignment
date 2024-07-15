@@ -1553,6 +1553,30 @@ button {
     padding: 0px;
   }
 
+  .navbar-search-map-container {
+    position: absolute;
+    width: 400px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 101;
+    left: -480px;
+    top: 40px;
+  }
+
+  .navbar-search-date-picker {
+    position: absolute;
+    padding: 30px;
+    border: 1px solid rgb(226, 226, 226);
+    border-radius: 25px;
+    background: #ffffff;
+    z-index: 101;
+    top: 40px;
+    left: -500px;
+  }
+  
+
   /* Main Body */
   .main-body-div-without-header-footer {
     margin: 0px auto;
