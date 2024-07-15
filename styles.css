@@ -1543,10 +1543,10 @@ button {
   }
   .navbar-search-date-picker{
     width: 400px;
-    left:30px
+    left:-600px
   }
   .navbar-search-date-picker-calendar{
-    
+  
     display: flex;
     justify-content: center;
     margin: 0px;

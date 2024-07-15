@@ -42,6 +42,7 @@ let searchNavbarItemMap = document.getElementById("search-navbar-item-map");
 const mapToggleOnClick = () => {
     
     handleActiveClassToggle({ currentTarget: searchNavbarItemMap });
+    searchVar.classList.remove('hidden')
     navbarSearchMapContainerId.classList.toggle("hidden");
     navbarSearchDatePicker.classList.add("hidden");
     searchNavbarItemGuestsContainer.classList.add("hidden");
