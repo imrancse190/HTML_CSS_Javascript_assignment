@@ -1531,10 +1531,10 @@ button {
     align-items: center;
     justify-content: center;
     border: 1px solid #ddd;
+    width: 100%;
     border-radius: 5px;
   }
-  
-  
+ 
   .stay-experiences-navbar{
     display: none !important;
   }
