@@ -10,6 +10,7 @@ This project showcases a property details page designed to be responsive on both
 ### Technologies Used
 - **HTML5**
 - **CSS (Raw)**
+- **Javascript**
 
 ### Responsive Design
 The project is designed to be responsive for the following devices:
@@ -25,10 +26,10 @@ The icons used in this project are from [Google Icons](https://fonts.google.com/
 - Attractive design for a better user experience
 
 ## Live Demo
-The project is hosted on GitHub Pages. You can view the live version [here](https://imrancse190.github.io/HTML_CSE_Assignment/).
+The project is hosted on GitHub Pages. You can view the live version [here](https://imrancse190.github.io/HTML_CSS_Javascript_assignment/).
 
 ## Repository
-The GitHub repository for this project can be found [here](https://github.com/imrancse190/HTML_CSE_Assignment/tree/main).
+The GitHub repository for this project can be found [here](https://github.com/imrancse190/HTML_CSS_Javascript_assignment).
 
 ## Screenshots
 ### Desktop View
@@ -48,7 +49,7 @@ The GitHub repository for this project can be found [here](https://github.com/im
 ## How to Run the Project
 1. Clone the repository:
     ```bash
-    git clone <repository-link>
+    git clone https://github.com/imrancse190/HTML_CSS_Javascript_assignment
     ```
 2. Open `index.html` in your preferred web browser.
 
