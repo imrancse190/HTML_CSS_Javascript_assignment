@@ -340,6 +340,7 @@ const copyLinkButtonClick = () => {
 
 // when the save item is clicked
 let saveItemImage = document.getElementById("saveitemImage");
+let saveItemImageMobile = document.getElementById("saveitemImageMobile");
 
 const saveItemOnClick = () => {
     let save = localStorage.getItem("saveItem");
@@ -350,10 +351,12 @@ const saveItemOnClick = () => {
         localStorage.removeItem("saveItem");
         showNotification("Remove item successfully")
         saveItemImage.classList.remove("save-item-background-color");
+        saveItemImageMobile.classList.remove("save-item-background-color");
     } else {
         localStorage.setItem("saveItem", true);
         showNotification("Save item successfully")
         saveItemImage.classList.add("save-item-background-color");
+        saveItemImageMobile.classList.add("save-item-background-color");
     }
 }
 
@@ -362,6 +365,7 @@ window.onload = () => {
 
     if (save === 'true') {
         saveItemImage.classList.add("save-item-background-color");
+        saveItemImageMobile.classList.add("save-item-background-color");
     }
 }
 
