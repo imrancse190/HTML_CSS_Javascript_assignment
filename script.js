@@ -40,6 +40,7 @@ let searchNavbarItemMap = document.getElementById("search-navbar-item-map");
 
 // Map toggle on click
 const mapToggleOnClick = () => {
+    
     handleActiveClassToggle({ currentTarget: searchNavbarItemMap });
     navbarSearchMapContainerId.classList.toggle("hidden");
     navbarSearchDatePicker.classList.add("hidden");
@@ -259,7 +260,7 @@ function saveDataToLocalStorage() {
 }
 
 // Add event listener to the search button
-document.getElementById('search-button').addEventListener('click', saveDataToLocalStorage);
+document.getElementById('search-button-id').addEventListener('click', saveDataToLocalStorage);
 
 
 // ===============================================================================
