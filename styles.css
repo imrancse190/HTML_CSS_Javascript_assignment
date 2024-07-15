@@ -1534,8 +1534,23 @@ button {
     border-radius: 5px;
   }
   
+  
   .stay-experiences-navbar{
     display: none !important;
+  }
+  #date-picker-2{
+    display: none;
+  }
+  .navbar-search-date-picker{
+    width: 400px;
+    left:30px
+  }
+  .navbar-search-date-picker-calendar{
+    
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
   }
 
   /* Main Body */
