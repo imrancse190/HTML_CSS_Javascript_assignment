@@ -1,7 +1,7 @@
 
 ---
 
-# Assignment on HTML and CSS
+# Assignment on Javascript
 
 This project showcases a property details page designed to be responsive on both desktop and mobile devices.
 

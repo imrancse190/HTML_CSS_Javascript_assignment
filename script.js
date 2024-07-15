@@ -254,7 +254,7 @@ function saveDataToLocalStorage() {
     };
 
     localStorage.setItem('searchData', JSON.stringify(searchData));
-    alert("Data is save");
+    showNotification("Search button is clicked");
     searchItemShow();
 }
 
