@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comfy New Apt. in Pueblo Libre!</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+</head>
+
+<body>
+  <!-- Get the app for  mobile -->
+  <!-- Notification for the download app for the mobile user -->
+  <div class="app-banner">
+    <div class="app-banner-close">x</div>
+    <div class="app-banner-content">
+      <div class="app-banner-icon">
+        <div class="app-banner-icon-square"></div>
+      </div>
+      <div class="app-banner-text">
+        <div class="app-banner-title">Get the app</div>
+        <div class="app-banner-subtitle">The fastest, easiest way</div>
+      </div>
+    </div>
+    <button class="app-banner-button">USE APP</button>
+  </div>
+
+  <!-- Navbar & User controls -->
+  <nav class="navbar border-bottom-navbar">
+    <div class="navbar-content container-size">
+      <div class="navbar-content-logo">
+        <img src="./assets/icon/online-booking.png" />
+      </div>
+      <div onclick="searchItemShow()">
+        <div class="stay-experiences-navbar hidden" id="stay-experiences-navbar-id">
+          <p>Close</p>
+          <!-- <p>Experiences</p> -->
+        </div>
+        <div class="search-container" id="navbar-search-apartment">
+          <input type="text" placeholder="Anywhere" class="search-input"  id="navbar-search-anywhere"/>
+          <hr style="height: 15px" />
+          <input type="text" placeholder="Any week" class="search-input" id="navbar-search-anyweek"/>
+          <hr style="height: 15px" />
+          <input type="text" placeholder="Add guests" class="search-input" id="navbar-search-anyguests"/>
+          <button class="search-button">
+            <img src="./assets/icon/search-icon-navbar.png" />
+          </button>
+        </div>
+      </div>
+      <div class="user-controls">
+        <button class="globe-icon-button">
+          <i class="globe-icon">
+            <img src="./assets/icon/language_icon_navbar.png" />
+          </i>
+        </button>
+
+        <button class="menu-icon-button">
+          <img src="./assets/icon/menu_icon_navbar.png" />
+          <img src="./assets/icon/account_circle_icon_navbar.png" />
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- Searchbar -->
+  <nav class="search-navbar hidden" id="search-navbar-id">
+    <div class="search-navbar-bar">
+      <div class="search-navbar-item " id="search-navbar-item-map" onclick="mapToggleOnClick()">
+        <span>Where</span>
+        <span id="map-area">Map area</span>
+      </div>
+      <div class="search-navbar-item" id="search-navbar-item-check-in" onclick="searchNavbarItemCheckInClick()">
+        <span>Check in</span>
+        <div style="display: flex; font-weight: normal;">
+          <span id="check-in-date">Add dates</span>
+          <span class="check-in-out-date-fexible"></span>
+        </div>
+      </div>
+      
+      <div class="search-navbar-item" id="search-navbar-item-check-out" onclick="searchNavbarItemCheckOutClick()">
+        <span>Check out</span>
+        <div style="display: flex; font-weight: normal;">
+          <span id="check-out-date">Add dates</span>
+          <span class="check-in-out-date-fexible"></span>
+        </div>
+      </div>
+      
+      <div class="search-navbar-item" id="search-navbar-item-add-guests" onclick="customizeGuestsNumber()">
+        <span>Who</span>
+        <span id="add-guests">Add guests</span>
+      </div>
+      <button id="search-button" class="search-button">
+        <img src="./assets/icon/search-icon-navbar.png" />
+      </button>
+    </div>
+
+    <div style="position: relative">
+      <!-- searchVar map container -->
+      <div class="navbar-search-map-container hidden" id="navbar-search-map-container-id">
+        <h2 class="navbar-search-map-title">Search by region</h2>
+        <div class="navbar-search-map-grid">
+          <div class="navbar-search-map-item" onclick="getValue(this)">
+            <img src="./assets/icon/map/map.png" alt="I'm flexible" />
+            <p value="I'm flexible">I'm flexible</p>
+          </div>
+          <div class="navbar-search-map-item" onclick="getValue(this)">
+            <img src="./assets/icon/map/map.png" alt="Southeast Asia" />
+            <p value="Southeast Asia">Southeast Asia</p>
+          </div>
+          <div class="navbar-search-map-item" onclick="getValue(this)">
+            <img src="./assets/icon/map/map.png" alt="Canada" />
+            <p value="Canada">Canada</p>
+          </div>
+          <div class="navbar-search-map-item" onclick="getValue(this)">
+            <img src="./assets/icon/map/map.png" alt="Europe" />
+            <p value="Europe">Europe</p>
+          </div>
+          <div class="navbar-search-map-item" onclick="getValue(this)">
+            <img src="./assets/icon/map/map.png" alt="Thailand" />
+            <p value="Thailand">Thailand</p>
+          </div>
+          <div class="navbar-search-map-item" onclick="getValue(this)">
+            <img src="./assets/icon/map/map.png" alt="Middle East" />
+            <p value="Middle East">Middle East</p>
+          </div>
+        </div>
+      </div>
+      <!-- navbar search date picker -->
+      <div class="navbar-search-date-picker hidden">
+        <div class="navbar-search-date-picker-div">
+          <div class="navbar-search-date-picker-date-month-flexible">
+            <div>
+              <div>Dates</div>
+              <div>Months</div>
+              <div>Flexible</div>
+            </div>
+          </div>
+          <div>
+            <div class="navbar-search-date-picker-calendar">
+              <div class="navbar-date-picker-date-picker" id="date-picker-1">
+                <input style="position: absolute; left: -9999px" type="text" id="myDatePicker1"
+                  class="flatpickr-input" />
+              </div>
+              <div class="navbar-date-picker-date-picker" id="date-picker-2">
+                <input style="position: absolute; left: -9999px" type="text" id="myDatePicker2"
+                  class="flatpickr-input" />
+              </div>
+            </div>
+            <div class="check-in-out-day-options">
+              <div class="flexible-dates">
+                <div id="exact-dates">± 0 day</div>
+                <div id="plus-1-day">± 1 day</div>
+                <div id="plus-2-days">± 2 days</div>
+                <div id="plus-3-days">± 3 days</div>
+                <div id="plus-7-days">± 7 days</div>
+                <div id="plus-14-days">± 14 days</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- search-navbar-item-guests- -->
+      <div>
+        <div class="search-navbar-item-guests-container hidden">
+          <div class="search-navbar-item-guests-group">
+            <div class="search-navbar-item-guests-label">
+              Adults<br /><span>Ages 13 or above</span>
+            </div>
+            <div class="search-navbar-item-guests-controls">
+              <button class="search-navbar-item-guests-button decrease">-</button>
+              <span class="search-navbar-item-guests-count">0</span>
+              <button class="search-navbar-item-guests-button increase">+</button>
+            </div>
+          </div>
+          <div class="search-navbar-item-guests-group">
+            <div class="search-navbar-item-guests-label">
+              Children<br /><span>Ages 2–12</span>
+            </div>
+            <div class="search-navbar-item-guests-controls">
+              <button class="search-navbar-item-guests-button decrease">-</button>
+              <span class="search-navbar-item-guests-count">0</span>
+              <button class="search-navbar-item-guests-button increase">+</button>
+            </div>
+          </div>
+          <div class="search-navbar-item-guests-group">
+            <div class="search-navbar-item-guests-label">
+              Infants<br /><span>Under 2</span>
+            </div>
+            <div class="search-navbar-item-guests-controls">
+              <button class="search-navbar-item-guests-button decrease">-</button>
+              <span class="search-navbar-item-guests-count">0</span>
+              <button class="search-navbar-item-guests-button increase">+</button>
+            </div>
+          </div>
+          <div class="search-navbar-item-guests-group">
+            <div class="search-navbar-item-guests-label">
+              Pets<br /><span>Bringing a service animal?</span>
+            </div>
+            <div class="search-navbar-item-guests-controls">
+              <button class="search-navbar-item-guests-button decrease">-</button>
+              <span class="search-navbar-item-guests-count">0</span>
+              <button class="search-navbar-item-guests-button increase">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Body without footer -->
+  <div>
+    <!-- header title share and save icon-->
+    <header class="header-items-all container-size" style="position: relative">
+      <div class="header-items">
+        <div class="header-items-left-arrow header-item-image">
+          <image src="./assets/icon/arrow_back_left_icon_home.png" />
+        </div>
+        <div class="header-items-title">Comfy New Apt. in Pueblo Libre!</div>
+        <div class="header-items-images">
+          <div class="header-item-image" id="header-item-share-main-button" onclick="shareButtonIsClicked()">
+            <image src="./assets/icon/ios_share_icon_header.png" />
+            <p>Share</p>
+          </div>
+          <div class="header-item-image" onclick="saveItemOnClick()">
+            <image src="./assets/icon/favorite_icon_header.png"  id="saveitemImage"/>
+            <p>Save</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- For mobile share save and back button -->
+      <div class="header-icon-mobile">
+        <div>
+          <image src="./assets/icon/arrow_back_left_icon_home.png" />
+        </div>
+        <div>
+          <div class="header-share-icon-mobile">
+            <image src="./assets/icon/ios_share_icon_header.png" />
+          </div>
+          <div>
+            <image src="./assets/icon/favorite_icon_header.png" />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- header item share modal -->
+    <div class="hidden" id="header-item-share-modal-all" >
+      <div class="header-item-share-modal">
+        <div class="header-item-share-close">&times;</div>
+        <div class="header-item-share-title">Share this experience</div>
+        <div class="header-item-share-images-details">
+          <img src="./assets/images/bedroom1.jpg" alt="Home in New Castle" class="header-item-share-image">
+          <div class="header-item-share-details">
+            <span>Home in New Castle</span>
+            <span>★ New · 4 bedrooms · 1 bed · 1 baths</span>
+          </div></div>
+        <div class="header-item-share-buttons">
+          <div class="header-item-share-button" onclick="copyLinkButtonClick()"><img src="./assets/icon/copy_icon.png" /> Copy Link</div>
+          <div class="header-item-share-button"><img src="./assets/icon/mail_icon.png" /> Email</div>
+          <div class="header-item-share-button"><img src="./assets/icon/messages_icon.png" /> Messages</div>
+          <div class="header-item-share-button"><img src="./assets/icon/category_icon.png" /> WhatsApp</div>
+          <div class="header-item-share-button"><img src="./assets/icon/category_icon.png" /> Messenger</div>
+          <div class="header-item-share-button"><img src="./assets/icon/category_icon.png" /> Facebook</div>
+          <div class="header-item-share-button"><img src="./assets/icon/category_icon.png" /> Twitter</div>
+          <div class="header-item-share-button"><img src="./assets/icon/category_icon.png" /> Embed</div>
+          <div class="header-item-share-button"><img src="./assets/icon/see_more_icon.png" /> More options</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main body -->
+    <main>
+      <!-- Gallery -->
+      <section class="gallery container-for-gallery" style="position: relative">
+        <div class="gallery-first-image">
+          <img src="./assets/images/bedroom1.jpg" alt="Bedroom" />
+        </div>
+        <div class="gallery-other-images">
+          <img src="./assets/images/bedroom2.jpg" alt="Living Room" />
+          <img src="./assets/images/bedroom3.jpg" alt="Kitchen" />
+          <img src="./assets/images/bedroom4.jpg" alt="Bathroom" />
+          <img src="./assets/images/bedroom5.jpg" alt="Entrance" />
+        </div>
+        <div class="gallery-show-all-photos" id="gallery-show-all-photos-id" onclick="showAllImagesOneByOne()">
+          <img src="./assets/icon/menu_all_icon_home.png" alt="Show all photos" />
+          <p>
+            <!-- Show all images -->
+
+          </p>
+        </div>
+      </section>
+      <div id="show_all_images_one_by_one" class="show_all_images_one_by_one hidden">
+        <div class="show_all_images_one_by_one-details">
+          <div onclick="showAllImagesOneByOne()">X Close</div>
+          <div id="show-all-images-one-by-one-active-image-number">1/21</div>
+          <div class="show_all_images_one_by_one-share-save">
+            <div>Share</div>
+            <div>Save</div>
+          </div>
+        </div>
+        <div class="show-all-images-image-container">
+          <button class="nav-button prev">&lt;</button>
+          <div class="image-container">
+            <img src="" alt="Hotel room" id="currentImage">
+          </div>
+          <button class="nav-button next">&gt;</button>
+        </div>
+      </div>
+
+      <!-- Apartment all information -->
+      <div class="details-information container-size">
+        <div class="rental-listing">
+          <!-- Title of the apartment -->
+          <header class="listing-header">
+            <div class="header-items-title-for-mobile-device">
+              Comfy New Apt. in Pueblo Libre!
+            </div>
+            <div class="listing-title">Entire rental unit in Lima, Peru</div>
+            <p class="listing-details">
+              2 guests · 1 bedroom · 1 bed · 1 bath
+            </p>
+            <span class="listing-tag">
+              <image src="./assets/icon/star_icon_home.png" />
+              New
+            </span>
+          </header>
+
+
+
+          <!-- Hosted profile -->
+          <section class="host-info">
+            <image src="./assets/images/user_demo_images.png" class="host-avatar" />
+            <div class="host-details">
+              <p class="host-name">Hosted by Fernando</p>
+              <p class="host-status">Superhost · 7 Years hosting</p>
+            </div>
+          </section>
+
+
+
+          <section class="listing-features">
+            <div class="feature">
+              <i class="icon-key"><img src="./assets/icon/smartLock_icon_home.png" /></i>
+              <div>
+                <h4>Self check-in</h4>
+                <p class="feature-description">
+                  Check yourself in with the smartlock.
+                </p>
+              </div>
+            </div>
+            <div class="feature">
+              <i class="icon-medal"><img src="./assets/icon/superHost_icon_home.png" /></i>
+              <div>
+                <h4>Fernando is a Superhost</h4>
+                <p class="feature-description">
+                  Superhosts are experienced, highly rated Hosts.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <div class="translation-notice">
+            <p>
+              Some info has been automatically translated.
+              <a href="#" class="show-original">Show original</a>
+            </p>
+          </div>
+
+          <section class="listing-description">
+            <p>
+              Welcome to our brand-new 1 bedroom apartment, in a quiet and
+              central location next to a park!
+            </p>
+            <p>
+              It's conveniently located in Pueblo Libre, just 25min. away from
+              the airport. Steps away from Clínica Stella Maris, Universidad
+              Antonio Ruiz de Montoya, Instituto Británico, Hospital Santa
+              Rosa, YMCA Peru and Alas Peruanas University. It's also very
+              close to La ...
+            </p>
+            <div class="show-more-button-div">
+              <a href="#" class="show-more-link">Show more</a>
+              <image class="show-more-right-arror-icon" src="./assets/icon/right_arrow_icon_home.png" />
+            </div>
+          </section>
+
+
+          <!-- Sleep image and badroom information -->
+          <section class="sleeping-arrangements">
+            <h2>Where you'll sleep</h2>
+            <div class="bedroom">
+              <img src="./assets/images/bedroom1.jpg" alt="Bedroom" class="bedroom-image" />
+              <h3>Bedroom</h3>
+              <p>1 double bed</p>
+            </div>
+          </section>
+
+          <hr style="opacity: 15%; width: 100%" class="hr-for-mobile-version" />
+          <!-- Benefits and offers of place  -->
+          <section class="amenities">
+            <h2>What this place offers</h2>
+            <ul class="amenities-list">
+              <li>
+                <i class="icon-kitchen"></i><img src="./assets/icon/place_offers/kitchen.svg" /> Kitchen
+              </li>
+              <li>
+                <i class="icon-wifi"></i><img src="./assets/icon/place_offers/wifi.png" /> Wifi
+              </li>
+              <li>
+                <i class="icon-tv"></i><img src="./assets/icon/place_offers/tv.png" /> TV
+              </li>
+              <li>
+                <i class="icon-elevator"></i><img src="./assets/icon/place_offers/elevator.png" />
+                Elevator
+              </li>
+              <li>
+                <i class="icon-washer"></i><img src="./assets/icon/place_offers/washer_dryer.png" />
+                Washer
+              </li>
+              <li>
+                <i class="icon-dryer"></i><img src="./assets/icon/place_offers/washer_dryer.png" />
+                Dryer
+              </li>
+              <li>
+                <i class="icon-hairdryer"></i><img src="./assets/icon/place_offers/hairdryer.png" /> Hair
+                dryer
+              </li>
+              <li>
+                <i class="icon-refrigerator"></i><img src="./assets/icon/place_offers/refrigerator.png" />
+                Refrigerator
+              </li>
+              <li>
+                <i class="icon-co-alarm"></i><img src="./assets/icon/place_offers/carbon_alarm.png" />
+                Carbon monoxide alarm
+              </li>
+              <li>
+                <i class="icon-smoke-alarm"></i>
+                <img src="./assets/icon/place_offers/smoke_alarm.png" />Smoke
+                alarm
+              </li>
+            </ul>
+            <button class="show-all-amenities">Show all 32 amenities</button>
+          </section>
+
+          <hr style="opacity: 15%; margin-top: 40px; margin-bottom: 40px" />
+
+          <!-- Checkin date -->
+          <section class="availability-calendar">
+            <h2>Select check-in date</h2>
+            <p class="availability-calendar-hint">
+              Add your travel dates for exact pricing
+            </p>
+            <div class="calendar">
+              <div class="custom-calendar">
+                <div class="calendar-header">
+                  <button class="prev-month-btn">&lt;</button>
+                  <h2>July 2024</h2>
+                  <button class="next-month-btn">
+                    &gt;
+                    <img src="./assets/icon/right_arrow_icon_home.png" />
+                  </button>
+                </div>
+                <div class="calendar-grid">
+                  <div class="calendar-day">Sun</div>
+                  <div class="calendar-day">Mon</div>
+                  <div class="calendar-day">Tue</div>
+                  <div class="calendar-day">Wed</div>
+                  <div class="calendar-day">Thu</div>
+                  <div class="calendar-day">Fri</div>
+                  <div class="calendar-day">Sat</div>
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date calendar-offday">1</div>
+                  <div class="calendar-date calendar-offday">2</div>
+                  <div class="calendar-date calendar-offday">3</div>
+                  <div class="calendar-date calendar-offday">4</div>
+                  <div class="calendar-date calendar-offday">5</div>
+                  <div class="calendar-date calendar-offday">6</div>
+                  <div class="calendar-date calendar-offday">7</div>
+                  <div class="calendar-date">8</div>
+                  <div class="calendar-date">9</div>
+                  <div class="calendar-date">10</div>
+                  <div class="calendar-date">11</div>
+                  <div class="calendar-date">12</div>
+                  <div class="calendar-date">13</div>
+                  <div class="calendar-date calendar-offday">14</div>
+                  <div class="calendar-date calendar-offday">15</div>
+                  <div class="calendar-date calendar-offday">16</div>
+                  <div class="calendar-date calendar-offday">17</div>
+                  <div class="calendar-date calendar-offday">18</div>
+                  <div class="calendar-date calendar-offday">19</div>
+                  <div class="calendar-date">20</div>
+                  <div class="calendar-date">21</div>
+                  <div class="calendar-date">22</div>
+                  <div class="calendar-date">23</div>
+                  <div class="calendar-date">24</div>
+                  <div class="calendar-date">25</div>
+                  <div class="calendar-date">26</div>
+                  <div class="calendar-date">27</div>
+                  <div class="calendar-date">28</div>
+                  <div class="calendar-date">29</div>
+                  <div class="calendar-date">30</div>
+                  <div class="calendar-date">31</div>
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date empty"></div>
+                </div>
+              </div>
+              <!-- Checkout date -->
+              <div class="custom-calendar calendar-august">
+                <div class="calendar-header">
+                  <button class="prev-month-btn">&lt;</button>
+                  <h2>August 2024</h2>
+                  <button class="next-month-btn">&gt;</button>
+                </div>
+                <div class="calendar-grid">
+                  <div class="calendar-day">Sun</div>
+                  <div class="calendar-day">Mon</div>
+                  <div class="calendar-day">Tue</div>
+                  <div class="calendar-day">Wed</div>
+                  <div class="calendar-day">Thu</div>
+                  <div class="calendar-day">Fri</div>
+                  <div class="calendar-day">Sat</div>
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date">1</div>
+                  <div class="calendar-date">2</div>
+                  <div class="calendar-date">3</div>
+                  <div class="calendar-date">4</div>
+                  <div class="calendar-date">5</div>
+                  <div class="calendar-date">6</div>
+                  <div class="calendar-date">7</div>
+                  <div class="calendar-date">8</div>
+                  <div class="calendar-date">9</div>
+                  <div class="calendar-date">10</div>
+                  <div class="calendar-date">11</div>
+                  <div class="calendar-date">12</div>
+                  <div class="calendar-date">13</div>
+                  <div class="calendar-date">14</div>
+                  <div class="calendar-date">15</div>
+                  <div class="calendar-date">16</div>
+                  <div class="calendar-date">17</div>
+                  <div class="calendar-date">18</div>
+                  <div class="calendar-date">19</div>
+                  <div class="calendar-date">20</div>
+                  <div class="calendar-date">21</div>
+                  <div class="calendar-date">22</div>
+                  <div class="calendar-date">23</div>
+                  <div class="calendar-date">24</div>
+                  <div class="calendar-date">25</div>
+                  <div class="calendar-date">26</div>
+                  <div class="calendar-date">27</div>
+                  <div class="calendar-date">28</div>
+                  <div class="calendar-date">29</div>
+                  <div class="calendar-date">30</div>
+                  <div class="calendar-date">31</div>
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date empty"></div>
+                  <div class="calendar-date empty"></div>
+                </div>
+              </div>
+            </div>
+            <div class="select-keyboard-and-clear-date">
+              <img src="./assets/icon/keyboard_icon_home.png" />
+              <button class="clear-dates">Clear dates</button>
+            </div>
+          </section>
+        </div>
+
+        <hr style="opacity: 15%; width: 100%" class="hr-for-mobile-version" />
+
+        <!-- add dates for prices -->
+        <!-- * Right side date picker box  -->
+        <aside class="booking-widget">
+          <div class="booking-widget-box">
+            <h2>Add dates for prices</h2>
+            <form class="booking-form">
+              <div class="date-inputs">
+                <div class="input-group">
+                  <label>CHECK-IN</label>
+                  <input type="text" name="check-in" placeholder="Add date" />
+                </div>
+                <div class="input-group">
+                  <label>CHECKOUT</label>
+                  <input type="text" name="check-out" placeholder="Add date" />
+                </div>
+              </div>
+              <div class="guest-select">
+                <label>GUESTS</label>
+                <select name="guests">
+                  <option value="1">1 guest</option>
+                  <option value="2">2 guests</option>
+                  <option value="3">3 guests</option>
+                  <option value="4">4 guests</option>
+                </select>
+              </div>
+              <button type="submit" class="check-availability">
+                Check availability
+              </button>
+            </form>
+          </div>
+          <a href="#" class="report-listing">
+            <image src="./assets/icon/flag_report_icon_body.png" />
+            <span>Report this listing</span>
+          </a>
+        </aside>
+      </div>
+
+      <hr style="opacity: 15%; margin-top: 40px; margin-bottom: 40px" class="container-size" />
+
+      <!-- Start review & location & Host part -->
+      <div class="accommodation-listing container-size">
+        <section class="review-summary">
+          <h3 class="no-reviews-yet">No reviews (yet)</h3>
+          <p class="host-review-count">
+            <span class="star-icon-review">
+              <img src="./assets/icon/review_star_icon_home.png" />
+            </span>
+            <span>
+              <span>This host has 310 reviews for other places to stay.</span>
+              <br />
+              <a href="#" class="show-other-reviews">Show other reviews</a>
+            </span>
+          </p>
+        </section>
+
+        <hr style="opacity: 15%; margin-top: 40px; margin-bottom: 40px" />
+        <!-- Location start -->
+
+        <section class="location-info">
+          <h2 class="location-heading">Where you'll be</h2>
+          <p class="location-address">Lima, Provincia de Lima, Peru</p>
+          <div class="location-map">
+            <img src="./assets/images/map_image.png" />
+          </div>
+          <div class="show-more-button-div">
+            <a href="#" class="show-more-link">Show more</a>
+            <image class="show-more-right-arror-icon" src="./assets/icon/right_arrow_icon_home.png" />
+          </div>
+        </section>
+
+        <hr style="opacity: 15%; margin-top: 40px; margin-bottom: 40px" />
+        <!-- Host profile start -->
+        <section class="host-profile">
+          <h2 class="host-heading">Meet your Host</h2>
+          <div class="host-all-information">
+            <div class="host-personal-info">
+              <div class="host-card">
+                <div class="host-name-badge-image">
+                  <img src="./assets/images/user_demo_images.png" alt="Fernando" class="host-photo" />
+
+                  <h3 class="host-name">Fernando</h3>
+                  <p class="host-badge">🎖Superhost</p>
+                </div>
+                <div class="host-stats">
+                  <p class="review-count"><span>310</span> Reviews</p>
+                  <hr style="opacity: 15%" />
+                  <p class="host-rating">
+                    <span class="star-icon">4.92★</span> Rating
+                  </p>
+                  <hr style="opacity: 15%" />
+                  <p class="hosting-years"><span>7</span> Years hosting</p>
+                </div>
+              </div>
+              <div class="additional-host-info">
+                <p class="host-birth-decade">
+                  <span class="icon">🎂</span> Born in the 80s
+                </p>
+                <p class="host-occupation">
+                  <span class="icon">💼</span> My work: Hospitality
+                </p>
+                <p class="host-bio">
+                  Hello world! I love traveling and I also love welcoming
+                  guests in my home country, Peru, meeting new...
+                </p>
+                <div class="show-more-button-div">
+                  <a href="#" class="show-more-link">Show more</a>
+                  <image class="show-more-right-arror-icon" src="./assets/icon/right_arrow_icon_home.png" />
+                </div>
+              </div>
+            </div>
+
+            <hr style="opacity: 15%; width: 100%; margin-top: 20px" class="hr-for-mobile-version" />
+
+            <div class="host-details">
+              <p class="superhost-description">Fernando is a Superhost</p>
+              <p class="superhost-info">
+                Superhosts are experienced, highly rated hosts who are
+                committed to providing great stays for guests.
+              </p>
+              <div class="co-hosts">
+                <h4 class="co-hosts-heading">Co-hosts</h4>
+                <div>
+                  <img src="./assets/icon/man.png" alt="Percy" class="co-host-photo" />
+                  <span>Percy</span>
+                  <img src="./assets/icon/girl.png" alt="Raul" class="co-host-photo" />
+                  <span>Raul</span>
+                </div>
+              </div>
+              <div class="host-response-info">
+                <h4 class="co-hosts-heading">Hots details</h4>
+                <div>
+                  <p class="response-rate">Response rate: 100%</p>
+                  <p class="response-time">Responds within an hour</p>
+                </div>
+              </div>
+              <button class="message-host-btn">Message Host</button>
+            </div>
+          </div>
+        </section>
+
+        <hr style="opacity: 15%; margin-top: 40px; margin-bottom: 40px" />
+
+        <!-- Think to know  -->
+        <!-- Policy and other information -->
+        <div class="things-to-know-container">
+          <h2 class="things-to-know-title">Things to know</h2>
+          <div class="things-to-know-sections">
+            <div class="things-to-know-section">
+              <h3 class="things-to-know-subtitle">House rules</h3>
+              <p>Check-in after 4:00 PM</p>
+              <p>Checkout before 11:00 AM</p>
+              <p>2 guests maximum</p>
+              <div class="show-more-button-div">
+                <a href="#" class="show-more-link">Show more</a>
+                <image class="show-more-right-arror-icon" src="./assets/icon/right_arrow_icon_home.png" />
+              </div>
+            </div>
+
+            <hr style="
+                  opacity: 15%;
+                  width: 100%;
+                  margin-top: 20px;
+                  margin-bottom: 20px;
+                " class="hr-for-mobile-version" />
+
+            <div class="things-to-know-section">
+              <h3 class="things-to-know-subtitle">Safety & property</h3>
+              <p>Carbon monoxide alarm not reported</p>
+              <p>Smoke alarm not reported</p>
+              <p>Not suitable for children and infants</p>
+              <div class="show-more-button-div">
+                <a href="#" class="show-more-link">Show more</a>
+                <image class="show-more-right-arror-icon" src="./assets/icon/right_arrow_icon_home.png" />
+              </div>
+            </div>
+            <hr style="opacity: 15%; width: 100%" class="hr-for-mobile-version" />
+
+            <div class="things-to-know-section Cancellation-policy">
+              <div>
+                <h3 class="things-to-know-subtitle">Cancellation policy</h3>
+                <p>
+                  Add your trip dates to get the cancellation details for this
+                  stay.
+                </p>
+              </div>
+              <div class="show-more-button-div">
+                <a href="#" class="show-more-link cancellation-policy-add-dates">
+                  Add dates
+                </a>
+                <image class="show-more-right-arror-icon" src="./assets/icon/right_arrow_icon_home.png" />
+
+                <image class="cancellation-policy-add-dates-right-arrow"
+                  src="./assets/icon/right_arrow_icon_home.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <hr style="opacity: 15%; width: 100%; margin-top: 20px; margin-bottom: 20px" class="hr-for-mobile-version" />
+
+    <!-- report-listing-mobile -->
+    <a href="#" class="report-listing-mobile container-size">
+      <image src="./assets/icon/flag_report_icon_body.png" />
+      <span>Report this listing</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-full-data">
+    <hr style="opacity: 15%; margin-top: -5px; margin-bottom: 30px" />
+    <div class="explore-options-container">
+      <nav class="breadcrumb-nav container-size">
+        <a href="#" class="breadcrumb-link">Peru</a> >&nbsp
+        <a href="#" class="breadcrumb-link"> Lima Province</a> >&nbsp
+        <span class="breadcrumb-current">Jesús María</span>
+      </nav>
+
+      <hr style="opacity: 15%" />
+
+      <p class="explore-options-title container-size">
+        Explore other options in and around Lima
+      </p>
+      <div class="explore-options-list container-size">
+        <div class="explore-options-item">
+          <h3 class="explore-options-location">Cieneguilla</h3>
+          <p class="explore-options-type">Vacation rentals</p>
+        </div>
+        <div class="explore-options-item">
+          <h3 class="explore-options-location">Punta Hermosa</h3>
+          <p class="explore-options-type">Vacation rentals</p>
+        </div>
+        <div class="explore-options-item">
+          <h3 class="explore-options-location">Asia</h3>
+          <p class="explore-options-type">Vacation rentals</p>
+        </div>
+        <div class="explore-options-item">
+          <h3 class="explore-options-location">Chaclacayo</h3>
+          <p class="explore-options-type">Vacation rentals</p>
+        </div>
+        <div class="explore-options-item">
+          <h3 class="explore-options-location">Barranco</h3>
+          <p class="explore-options-type">Vacation rentals</p>
+        </div>
+        <div class="explore-options-item">
+          <h3 class="explore-options-location">Santiago de Surco</h3>
+          <p class="explore-options-type">Vacation rentals</p>
+        </div>
+        <div class="explore-options-item">
+          <h3 class="explore-options-location">San Isidro</h3>
+          <p class="explore-options-type">Vacation rentals</p>
+        </div>
+        <div class="explore-options-item">
+          <h3 class="explore-options-location">San Miguel</h3>
+          <p class="explore-options-type">Vacation rentals</p>
+        </div>
+        <div class="explore-options-item">
+          <h3 class="explore-options-location">Lunahuaná</h3>
+          <p class="explore-options-type">Vacation rentals</p>
+        </div>
+      </div>
+      <hr style="opacity: 15%" />
+
+      <h2 class="explore-options-subtitle container-size">
+        Other types of stays on Airbnb
+      </h2>
+      <div class="other-stays-list container-size">
+        <a href="#" class="other-stays-link">Jesús María vacation rentals</a>
+        <a href="#" class="other-stays-link">Jesús María monthly stays</a>
+        <a href="#" class="other-stays-link">Apartment vacation rentals in Lima Province</a>
+        <a href="#" class="other-stays-link">Apartment vacation rentals in Lima Province</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</body>
+
+</html>
